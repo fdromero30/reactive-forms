@@ -4,32 +4,30 @@
         Email:<br>
         <input type="email" formControlName="email">
     </p>
-    <!-- <p *ngIf="form.email.errors  && form.email.dirty">
-        <small *ngIf="form.email.hasError('required')">Required form!</small>
-        <small *ngIf="form.email.hasError('maxlength')">maxlength 50!</small>
-        <small *ngIf="email.hasError('minlength')">minlength 10!</small>
-
-    </p> -->
+    <p *ngIf="form.get('email').errors  && form.get('email').dirty">
+        <small *ngIf="form.get('email').hasError('required')">Required form!</small>
+        <small *ngIf="form.get('email').hasError('email')">type email form!</small>
+    </p>
     <p>
         Name:<br>
         <input type="text" formControlName="name">
     </p>
-    <!-- <p *ngIf="name.errors  && name.dirty">
-        <small *ngIf="name.hasError('required')">Required form!</small>
-        <small *ngIf="name.hasError('maxlength')">maxlength 50!</small>
-        <small *ngIf="name.hasError('minlength')">minlength 10!</small>
+    <p *ngIf="form.get('name').errors  && form.get('name').touched">
+        <small *ngIf="form.get('name').hasError('required')">Required form!</small>
+        <small *ngIf="form.get('name').hasError('maxlength')">maxlength 50!</small>
+        <small *ngIf="form.get('name').hasError('minlength')">minlength 10!</small>
 
-    </p> -->
+    </p>
     <p>
         Password:<br>
         <input type="password" formControlName="password">
     </p>
-    <!-- <p *ngIf="password.errors  && password.dirty">
-        <small *ngIf="password.hasError('required')">Required form!</small>
-        <small *ngIf="password.hasError('maxlength')">maxlength 50!</small>
-        <small *ngIf="password.hasError('minlength')">minlength 10!</small>
+    <p *ngIf="form.get('password').errors  && form.get('password').dirty">
+        <small *ngIf="form.get('password').hasError('required')">Required form!</small>
+        <small *ngIf="form.get('password').hasError('maxlength')">maxlength 50!</small>
+        <small *ngIf="form.get('password').hasError('minlength')">minlength 10!</small>
 
-    </p> -->
+    </p>
 
     <button type="submit" [disabled]="form.invalid" (click)="saveForm($event)">
         Save

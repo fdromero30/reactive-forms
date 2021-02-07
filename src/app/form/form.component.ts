@@ -34,8 +34,14 @@ export class FormComponent implements OnInit {
       });
   }
 
+  /**
+   * 
+   * @param _event 
+   */
   saveForm(_event) {
     event.preventDefault();
-    alert('saved');
+    if (this.form.valid) {
+      alert('saved');
+    }
   }
 }
