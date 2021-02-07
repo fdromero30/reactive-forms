@@ -1,12 +1,37 @@
-<p>form works!</p>
-<p>
-    Email:<br>
-    <input type="email" [formControl]="emailCtrl">
-</p>
-<p *ngIf="emailCtrl.errors  && emailCtrl.dirty">
-    <small *ngIf="emailCtrl.hasError('required')">Required form!</small>
-    <small *ngIf="emailCtrl.hasError('maxlength')">maxlength 50!</small>
-    <small *ngIf="emailCtrl.hasError('minlength')">minlength 10!</small>
+<h1>FORM PAGE</h1>
+<form [formGroup]="form">
+    <p>
+        Email:<br>
+        <input type="email" formControlName="email">
+    </p>
+    <!-- <p *ngIf="form.email.errors  && form.email.dirty">
+        <small *ngIf="form.email.hasError('required')">Required form!</small>
+        <small *ngIf="form.email.hasError('maxlength')">maxlength 50!</small>
+        <small *ngIf="email.hasError('minlength')">minlength 10!</small>
 
-</p>
-<button [disabled]="emailCtrl.invalid" type="button" (click)="getEmail($event)">Save</button>
+    </p> -->
+    <p>
+        Name:<br>
+        <input type="text" formControlName="name">
+    </p>
+    <!-- <p *ngIf="name.errors  && name.dirty">
+        <small *ngIf="name.hasError('required')">Required form!</small>
+        <small *ngIf="name.hasError('maxlength')">maxlength 50!</small>
+        <small *ngIf="name.hasError('minlength')">minlength 10!</small>
+
+    </p> -->
+    <p>
+        Password:<br>
+        <input type="password" formControlName="password">
+    </p>
+    <!-- <p *ngIf="password.errors  && password.dirty">
+        <small *ngIf="password.hasError('required')">Required form!</small>
+        <small *ngIf="password.hasError('maxlength')">maxlength 50!</small>
+        <small *ngIf="password.hasError('minlength')">minlength 10!</small>
+
+    </p> -->
+
+    <button type="submit" [disabled]="form.invalid" (click)="saveForm($event)">
+        Save
+    </button>
+</form>

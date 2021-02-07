@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({
@@ -10,28 +10,32 @@ import { debounceTime } from 'rxjs/operators';
 export class FormComponent implements OnInit {
 
 
-  emailCtrl = new FormControl('',
-    [Validators.required,
-    Validators.maxLength(50),
-    Validators.minLength(10)]);
-
-  constructor() {
-
+  form: FormGroup;
+  constructor(private formBuilder: FormBuilder) {
+    this.buildForm();
   }
 
   ngOnInit(): void {
-    this.emailCtrl.valueChanges
-      .pipe(debounceTime(350)).subscribe(val => {
-        console.log(val);
-      })
   }
 
   /**
    * 
-   * @param event 
    */
-  getEmail(event) {
+  buildForm() {
+    this.form = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(10), Validators.email]],
+      name: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(10)]],
+      password: ['', [Validators.required], []]
+    });
+
+    this.form.valueChanges
+      .pipe(debounceTime(500)).subscribe(val => {
+        console.log(val);
+      });
+  }
+
+  saveForm(_event) {
     event.preventDefault();
-    alert(this.emailCtrl.value);
+    alert('saved');
   }
 }
