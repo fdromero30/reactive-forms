@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
+import { GenericService } from '../services/generic.service';
 
 @Component({
   selector: 'app-form',
@@ -11,7 +12,7 @@ export class FormComponent implements OnInit {
 
 
   form: FormGroup;
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private generic: GenericService) {
     this.buildForm();
   }
 
@@ -40,8 +41,9 @@ export class FormComponent implements OnInit {
    */
   saveForm(_event) {
     event.preventDefault();
-    if (this.form.valid) {
-      alert('saved');
-    }
+    this.generic.get('test').subscribe(res => {
+      alert('exitoso');
+      console.log(res);
+    });
   }
 }
